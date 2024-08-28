@@ -129,3 +129,10 @@ body {
     width: 48%;
     height: 200px;
 }
+
+.rating-scores {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #ffffff;
+    text-align: center;
+}
