@@ -1,6 +1,6 @@
-const apiKey = 'AIzaSyCzG6i6Vyo1ZFxqwVy5F224mbxf5BnF-v0';
-const sheetId = '1f0w2MOL4Z_vlrFUxj9wgTBd5_4AG8Q9HSPrOhPePrZ8';
-const range = 'CORE!A2:I';
+const apiKey = 'AIzaSyCzG6i6Vyo1ZFxqwVy5F224mbxf5BnF-v0';  // Ваш API-ключ
+const sheetId = '1f0w2MOL4Z_vlrFUxj9wgTBd5_4AG8Q9HSPrOhPePrZ8'; // Ваш ID таблицы
+const range = 'CORE!A2:I'; // Обновленный диапазон
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
