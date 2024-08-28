@@ -1,0 +1,105 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(25, 25, 25, 255);
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+.main-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15%;
+    height: 15%;
+    background: url('background-logo.png') no-repeat center center;
+    background-size: cover;
+    filter: blur(100px);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-in-out;
+}
+
+.content {
+    z-index: 10;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0 0 1rem;
+}
+
+p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s ease;
+    transform-origin: center;
+    display: flex;
+    justify-content: center;
+    will-change: transform;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+}
+
+.core-btn {
+    background-color: #333;
+}
+
+.shield-btn {
+    background-color: #d32f2f;
+}
+
+footer {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+footer a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+footer a:hover {
+    color: white;
+}
