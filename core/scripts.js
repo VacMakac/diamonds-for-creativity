@@ -1,6 +1,6 @@
-const apiKey = 'AIzaSyCzG6i6Vyo1ZFxqwVy5F224mbxf5BnF-v0';  // Ваш API-ключ
-const sheetId = '1f0w2MOL4Z_vlrFUxj9wgTBd5_4AG8Q9HSPrOhPePrZ8'; // Ваш ID таблицы
-const range = 'CORE!A2:I'; // Обновленный диапазон
+const apiKey = 'AIzaSyCzG6i6Vyo1ZFxqwVy5F224mbxf5BnF-v0';
+const sheetId = '1f0w2MOL4Z_vlrFUxj9wgTBd5_4AG8Q9HSPrOhPePrZ8';
+const range = 'CORE!A2:I';
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
@@ -22,13 +22,15 @@ function fetchData() {
             
             if (rows) {
                 rows.forEach(row => {
-                    const link = row[0] || '#'; // Ссылка
-                    const preview = row[1] || 'default.jpg'; // Превью
-                    const title = row[2] || 'No Title'; // Название
-                    const author = row[3] || 'Unknown Author'; // Автор
-                    const overallRating = parseFloat(row[4]) || 0; // Общая оценка
-                    const vakVideo = row[7] || ''; // Видео Вака
-                    const vipsVideo = row[8] || ''; // Видео Випса
+                    const link = row[0] || '#';
+                    const preview = row[1] || 'default.jpg';
+                    const title = row[2] || 'No Title';
+                    const author = row[3] || 'Unknown Author';
+                    const overallRating = parseFloat(row[4]) || 0;
+                    const vakRating = parseFloat(row[5]) || 0; // Оценка Вака
+                    const vipsRating = parseFloat(row[6]) || 0; // Оценка Випса
+                    const vakVideo = row[7] || '';
+                    const vipsVideo = row[8] || '';
 
                     const tileElement = document.createElement('div');
                     tileElement.classList.add('table-tile');
@@ -40,7 +42,7 @@ function fetchData() {
                     `;
                     
                     tileElement.addEventListener('click', () => {
-                        showMenu(title, link, overallRating, vakVideo, vipsVideo);
+                        showMenu(title, link, overallRating, vakVideo, vipsVideo, vakRating, vipsRating);
                     });
                     
                     container.appendChild(tileElement);
@@ -52,7 +54,7 @@ function fetchData() {
         .catch(error => console.error('Ошибка при загрузке данных:', error));
 }
 
-function showMenu(title, link, overallRating, vakVideo, vipsVideo) {
+function showMenu(title, link, overallRating, vakVideo, vipsVideo, vakRating, vipsRating) {
     document.getElementById('modal-title').textContent = title;
     const videoLink = document.getElementById('modal-link');
     videoLink.href = link;
@@ -62,6 +64,9 @@ function showMenu(title, link, overallRating, vakVideo, vipsVideo) {
     
     document.getElementById('vak-video').src = `https://www.youtube.com/embed/${vakVideo}`;
     document.getElementById('vips-video').src = `https://www.youtube.com/embed/${vipsVideo}`;
+
+    document.getElementById('vak-rating').textContent = `Оценка Вака: ${vakRating}/90`;
+    document.getElementById('vips-rating').textContent = `Оценка Випса: ${vipsRating}/90`;
 
     const modal = document.getElementById('modal');
     modal.style.display = 'flex';
