@@ -22,15 +22,13 @@ function fetchData() {
             
             if (rows) {
                 rows.forEach(row => {
-                    const link = row[0] || '#';
-                    const preview = row[1] || 'default.jpg';
-                    const title = row[2] || 'No Title';
-                    const author = row[3] || 'Unknown Author';
-                    const overallRating = parseFloat(row[4]) || 0;
-                    const vakRating = parseFloat(row[5]) || 0; // Оценка Вака
-                    const vipsRating = parseFloat(row[6]) || 0; // Оценка Випса
-                    const vakVideo = row[7] || '';
-                    const vipsVideo = row[8] || '';
+                    const link = row[0] || '#'; // Ссылка
+                    const preview = row[1] || 'default.jpg'; // Превью
+                    const title = row[2] || 'No Title'; // Название
+                    const author = row[3] || 'Unknown Author'; // Автор
+                    const overallRating = parseFloat(row[4]) || 0; // Общая оценка
+                    const vakVideo = row[7] || ''; // Видео Вака
+                    const vipsVideo = row[8] || ''; // Видео Випса
 
                     const tileElement = document.createElement('div');
                     tileElement.classList.add('table-tile');
@@ -42,7 +40,7 @@ function fetchData() {
                     `;
                     
                     tileElement.addEventListener('click', () => {
-                        showMenu(title, link, overallRating, vakVideo, vipsVideo, vakRating, vipsRating);
+                        showMenu(title, link, overallRating, vakVideo, vipsVideo);
                     });
                     
                     container.appendChild(tileElement);
@@ -64,9 +62,6 @@ function showMenu(title, link, overallRating, vakVideo, vipsVideo, vakRating, vi
     
     document.getElementById('vak-video').src = `https://www.youtube.com/embed/${vakVideo}`;
     document.getElementById('vips-video').src = `https://www.youtube.com/embed/${vipsVideo}`;
-
-    document.getElementById('vak-rating').textContent = `Оценка Вака: ${vakRating}/90`;
-    document.getElementById('vips-rating').textContent = `Оценка Випса: ${vipsRating}/90`;
 
     const modal = document.getElementById('modal');
     modal.style.display = 'flex';
