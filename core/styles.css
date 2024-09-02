@@ -145,7 +145,7 @@ body {
     text-decoration: underline;
 }
 
-.vac-section, .vips-section {
+.vac-section, .vips-section, .smash-section {
     display: flex;
     align-items: center;
     width: 100%;
@@ -153,26 +153,38 @@ body {
     margin-bottom: 20px;
 }
 
-.vac-section iframe, .vips-section iframe {
+.vac-section iframe, .vips-section iframe, .smash-section iframe {
     width: 48%;
     height: 200px;
     margin-right: 20px;
 }
 
-.vac-rating, .vips-rating {
+.vac-rating, .vips-rating, .smash-rating {
     width: 48%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.vac-rating p, .vips-rating p {
+.vac-rating p{
     margin: 0;
     font-size: 1.2em;
-    color: #86ff7b;
+    color: #df7d15;
 }
 
-.vac-rating div, .vips-rating div {
+.vips-rating p{
+    margin: 0;
+    font-size: 1.2em;
+    color: #c0190d;
+}
+
+.smash-rating p {
+    margin: 0;
+    font-size: 1.2em;
+    color: #21cef9;
+}
+
+.vac-rating div, .vips-rating div, .smash-rating div {
     font-size: 3em;
     color: #ffffff;
     font-weight: bold;
@@ -185,4 +197,25 @@ body {
     height: 180px;
     margin-right: 30px;
     margin-left: 30px;
+}
+
+@media (max-width: 750px) {
+    .previe {
+        width: 256px;
+        height: 144px;
+    }
+}
+
+@media (max-width: 600px) {
+    .previe {
+        width: 128px;
+        height: 72px;
+    }
+}
+
+@media (max-width: 450px) {
+    .previe {
+        width: 96px;
+        height: 56px;
+    }
 }

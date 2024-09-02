@@ -32,6 +32,20 @@ body, html {
     transition: transform 0.1s ease-in-out;
 }
 
+@media (max-width: 800px) {
+    .logo-bg {
+        width: 20%;
+        height: 20%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-bg {
+        width: 25%;
+        height: 25%;
+    }
+}
+
 .content {
     z-index: 10;
 }
