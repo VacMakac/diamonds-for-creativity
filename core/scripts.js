@@ -1,6 +1,6 @@
 const apiKey = 'AIzaSyCzG6i6Vyo1ZFxqwVy5F224mbxf5BnF-v0';
 const sheetId = '1f0w2MOL4Z_vlrFUxj9wgTBd5_4AG8Q9HSPrOhPePrZ8';
-const range = 'CORE123!A2:L';
+const range = 'CORE!A2:L';
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
