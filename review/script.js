@@ -35,7 +35,7 @@ function loadVideosFromGoogleSheets() {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const rows = data.values;
+            const rows = data.values || []; // Добавляем обработку отсутствия значений
             const customOptions = document.getElementById('customOptions');
             
             customOptions.innerHTML = ''; // Очищаем предыдущие опции
@@ -83,9 +83,12 @@ function displaySelectedVideo(optionDiv) {
 
     // Скрываем кастомный выпадающий список и кнопки
     customSelectContainer.style.display = 'none';
+
+    // Обнуляем значения слайдеров и общей оценки
+    resetSliders();
 }
 
-// Обновление оценки слайдерами
+// Функция для обновления оценки слайдерами
 const sliders = document.querySelectorAll('.slider');
 const totalScoreElement = document.getElementById('totalScore');
 
@@ -101,12 +104,28 @@ function updateScore() {
     score += parseInt(document.getElementById('slider3').value);
     score += parseInt(document.getElementById('slider4').value);
 
-    let multiplier1 = parseInt(document.getElementById('slider5').value);
-    let multiplier2 = parseInt(document.getElementById('slider6').value);
+    let multiplier1 = parseInt(document.getElementById('slider5').value) * 0.15;
+    let multiplier2 = parseInt(document.getElementById('slider6').value) * 0.10;
 
-    score += (multiplier1 + multiplier2) * 2;
+    score *= (1 + multiplier1 + multiplier2);
+    score = Math.min(Math.round(score), 90);
 
     totalScoreElement.textContent = score;
+
+    document.getElementById('slider1Value').textContent = document.getElementById('slider1').value;
+    document.getElementById('slider2Value').textContent = document.getElementById('slider2').value;
+    document.getElementById('slider3Value').textContent = document.getElementById('slider3').value;
+    document.getElementById('slider4Value').textContent = document.getElementById('slider4').value;
+    document.getElementById('slider5Value').textContent = document.getElementById('slider5').value;
+    document.getElementById('slider6Value').textContent = document.getElementById('slider6').value;
+}
+
+// Сброс значений слайдеров и общей оценки
+function resetSliders() {
+    sliders.forEach(slider => {
+        slider.dispatchEvent(new Event('input')); // Обновляем отображение значений
+    });
+    totalScoreElement.textContent = 25; // Устанавливаем значение по умолчанию
 }
 
 // Сохранение оценки
@@ -128,4 +147,5 @@ function saveScore() {
 // Инициализация
 document.addEventListener('DOMContentLoaded', function () {
     loadVideosFromGoogleSheets();
+    resetSliders(); // Устанавливаем значения по умолчанию при загрузке
 });
