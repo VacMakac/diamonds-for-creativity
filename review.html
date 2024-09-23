@@ -11,9 +11,15 @@
     <div class="container">
         <div class="custom-select-container">
             <div id="customSelect" class="custom-select">Выберите видео</div>
-            <div id="customOptions" class="custom-options" style="display: none;"></div>
+            <div id="tableSwitch" style="display: none;">
+                <div class="table-buttons">
+                    <button id="coreTableButton" class="table-button">CORE</button>
+                    <button id="mineShieldTableButton" class="table-button">MineShield</button>
+                </div>
+                <div id="customOptions" class="custom-options"></div>
+            </div>
         </div>
-        
+
         <div class="video-info" style="display: none;">
             <img id="videoPreview" src="thumbnail.jpeg" alt="Видео Превью" class="preview-image">
             <div class="video-details">
@@ -61,7 +67,7 @@
         </div>
 
         <div class="score">
-            <span id="totalScore">30</span><span id="maxScore">/90</span>
+            <span id="totalScore">25</span><span id="maxScore">/90</span>
         </div>
 
         <button id="saveButton" class="save-btn">Оценить</button>

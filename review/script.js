@@ -1,8 +1,35 @@
+const sheetId = '1f0w2MOL4Z_vlrFUxj9wgTBd5_4AG8Q9HSPrOhPePrZ8';
+const apiKey = 'AIzaSyCzG6i6Vyo1ZFxqwVy5F224mbxf5BnF-v0';
+let currentTable = 'CORE'; // По умолчанию выбрана таблица CORE
+
+document.getElementById('customSelect').addEventListener('click', function() {
+    const options = document.getElementById('customOptions');
+    const tableSwitch = document.getElementById('tableSwitch');
+    
+    // Показать или скрыть таблицы
+    if (options.style.display === 'block') {
+        options.style.display = 'none';
+        tableSwitch.style.display = 'none';
+    } else {
+        options.style.display = 'block';
+        tableSwitch.style.display = 'block';
+        loadVideosFromGoogleSheets(); // Загрузка видео при открытии
+    }
+});
+
+document.getElementById('coreTableButton').addEventListener('click', function() {
+    currentTable = 'CORE';
+    loadVideosFromGoogleSheets();
+});
+
+document.getElementById('mineShieldTableButton').addEventListener('click', function() {
+    currentTable = 'MineShield';
+    loadVideosFromGoogleSheets();
+});
+
 // Функция для загрузки видео из Google Sheets
 function loadVideosFromGoogleSheets() {
-    const sheetId = '1f0w2MOL4Z_vlrFUxj9wgTBd5_4AG8Q9HSPrOhPePrZ8';
-    const sheetRange = 'CORE!A2:L';
-    const apiKey = 'AIzaSyCzG6i6Vyo1ZFxqwVy5F224mbxf5BnF-v0';
+    const sheetRange = `${currentTable}!A2:L`;
     const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetRange}?key=${apiKey}`;
 
     fetch(apiUrl)
@@ -11,8 +38,7 @@ function loadVideosFromGoogleSheets() {
             const rows = data.values;
             const customOptions = document.getElementById('customOptions');
             
-            // Очищаем предыдущие опции перед добавлением новых
-            customOptions.innerHTML = ''; 
+            customOptions.innerHTML = ''; // Очищаем предыдущие опции
 
             rows.forEach(row => {
                 const status = row[4]; // Статус видео
@@ -40,12 +66,12 @@ function loadVideosFromGoogleSheets() {
         .catch(error => console.error('Ошибка при загрузке данных из Google Sheets:', error));
 }
 
-// Функция для отображения выбранного видео и полного скрытия кнопки выбора
+// Функция для отображения выбранного видео и скрытия списка
 function displaySelectedVideo(optionDiv) {
     const previewImage = document.getElementById('videoPreview');
     const videoTitle = document.getElementById('videoTitle');
     const videoAuthor = document.getElementById('videoAuthor');
-    const customSelectContainer = document.querySelector('.custom-select-container'); // Контейнер выбора
+    const customSelectContainer = document.querySelector('.custom-select-container');
 
     // Обновляем информацию о выбранном видео
     previewImage.src = optionDiv.getAttribute('data-preview');
@@ -55,25 +81,11 @@ function displaySelectedVideo(optionDiv) {
     // Отображаем информацию о видео
     document.querySelector('.video-info').style.display = 'flex';
 
-    // Полностью скрываем кастомный выпадающий список и кнопку выбора
+    // Скрываем кастомный выпадающий список и кнопки
     customSelectContainer.style.display = 'none';
 }
 
-// Показать/скрыть опции при клике на кастомный select
-document.getElementById('customSelect').addEventListener('click', function() {
-    const options = document.getElementById('customOptions');
-    
-    // Проверяем текущее состояние видимости списка и переключаем
-    options.style.display = options.style.display === 'block' ? 'none' : 'block';
-});
-
-// Инициализация
-document.addEventListener('DOMContentLoaded', function () {
-    loadVideosFromGoogleSheets();
-});
-
-
-// Функция для обновления оценки слайдерами
+// Обновление оценки слайдерами
 const sliders = document.querySelectorAll('.slider');
 const totalScoreElement = document.getElementById('totalScore');
 
@@ -89,23 +101,15 @@ function updateScore() {
     score += parseInt(document.getElementById('slider3').value);
     score += parseInt(document.getElementById('slider4').value);
 
-    let multiplier1 = parseInt(document.getElementById('slider5').value) * 0.15;
-    let multiplier2 = parseInt(document.getElementById('slider6').value) * 0.10;
+    let multiplier1 = parseInt(document.getElementById('slider5').value);
+    let multiplier2 = parseInt(document.getElementById('slider6').value);
 
-    score *= (1 + multiplier1 + multiplier2);
-    score = Math.min(Math.round(score), 90);
+    score += (multiplier1 + multiplier2) * 2;
 
     totalScoreElement.textContent = score;
-
-    document.getElementById('slider1Value').textContent = document.getElementById('slider1').value;
-    document.getElementById('slider2Value').textContent = document.getElementById('slider2').value;
-    document.getElementById('slider3Value').textContent = document.getElementById('slider3').value;
-    document.getElementById('slider4Value').textContent = document.getElementById('slider4').value;
-    document.getElementById('slider5Value').textContent = document.getElementById('slider5').value;
-    document.getElementById('slider6Value').textContent = document.getElementById('slider6').value;
 }
 
-// Функция для сохранения оценки
+// Сохранение оценки
 document.getElementById('saveButton').addEventListener('click', function () {
     saveScore().then(() => {
         window.location.reload();
@@ -121,8 +125,7 @@ function saveScore() {
     });
 }
 
-// Инициализация после загрузки страницы
+// Инициализация
 document.addEventListener('DOMContentLoaded', function () {
     loadVideosFromGoogleSheets();
-    document.getElementById('videoSelect').addEventListener('change', displaySelectedVideo);
 });
