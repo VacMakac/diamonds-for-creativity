@@ -1,6 +1,6 @@
 const apiKey = 'AIzaSyCzG6i6Vyo1ZFxqwVy5F224mbxf5BnF-v0';
 const sheetId = '1f0w2MOL4Z_vlrFUxj9wgTBd5_4AG8Q9HSPrOhPePrZ8';
-const range = 'MineShield!A2:L';
+const range = 'MineShield!A2:N';
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
@@ -30,9 +30,11 @@ function fetchData() {
                     const vacRating = parseFloat(row[6]) || 0;
                     const vipsRating = parseFloat(row[7]) || 0;
                     const smashRating = parseFloat(row[8]) || 0;
-                    const vacVideo = row[9] || '';
-                    const vipsVideo = row[10] || '';
-                    const smashVideo = row[11] || '';
+                    const optiRating = parseFloat(row[9]) || 0;
+                    const vacVideo = row[10] || '';
+                    const vipsVideo = row[11] || '';
+                    const smashVideo = row[12] || '';
+                    const optiVideo = row[13] || '';
 
                     const tileElement = document.createElement('div');
                     tileElement.classList.add('table-tile');
@@ -45,7 +47,7 @@ function fetchData() {
                 `;                
                     
                     tileElement.addEventListener('click', () => {
-                        showMenu(title, link, overallRating, vacRating, vipsRating, smashRating, vacVideo, vipsVideo, smashVideo);
+                        showMenu(title, link, overallRating, vacRating, vipsRating, smashRating, optiRating, vacVideo, vipsVideo, smashVideo, optiVideo);
                     });
                     
                     container.appendChild(tileElement);
@@ -57,7 +59,7 @@ function fetchData() {
         .catch(error => console.error('Ошибка при загрузке данных:', error));
 }
 
-function showMenu(title, link, overallRating, vacRating, vipsRating, smashRating, vacVideo, vipsVideo, smashVideo) {
+function showMenu(title, link, overallRating, vacRating, vipsRating, smashRating, optiRating, vacVideo, vipsVideo, smashVideo, optiVideo) {
     document.getElementById('modal-title').textContent = title;
     const videoLink = document.getElementById('modal-link');
     videoLink.href = link;
@@ -66,6 +68,7 @@ function showMenu(title, link, overallRating, vacRating, vipsRating, smashRating
     const vacVideoElement = document.getElementById('vac-video');
     const vipsVideoElement = document.getElementById('vips-video');
     const smashVideoElement = document.getElementById('smash-video');
+    const optiVideoElement = document.getElementById('opti-video');
 
     // Оценка ВакМакака
     if (vacRating) {
@@ -101,6 +104,18 @@ function showMenu(title, link, overallRating, vacRating, vipsRating, smashRating
     } else {
         smashVideoElement.style.display = 'none';
         document.querySelector('.smash-section').style.display = 'none';
+    }
+
+    // Оценка Опти
+    if (optiRating) {
+        document.getElementById('opti-rating-text').innerHTML = `${optiRating}<span class="rating-max">/90</span>`;
+        optiVideoElement.src = `https://i.ytimg.com/vi/${optiVideo}/maxresdefault.jpg`;
+        optiVideoElement.style.display = 'block';
+        optiVideoElement.onclick = () => window.open(`https://www.youtube.com/watch?v=${optiVideo}`, '_blank');
+        document.querySelector('.opti-section').style.display = 'flex';
+    } else {
+        optiVideoElement.style.display = 'none';
+        document.querySelector('.opti-section').style.display = 'none';
     }
 
     const modal = document.getElementById('modal');
