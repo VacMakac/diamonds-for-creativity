@@ -140,3 +140,58 @@ footer a {
 footer a:hover {
     color: white;
 }
+
+
+
+#diamond-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+}
+
+#diamond-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.diamond {
+    position: absolute;
+    top: -50px; /* Старт выше экрана */
+    width: 50px;
+    height: 50px;
+    background: url('background-logo.png') no-repeat center center;
+    background-size: contain;
+    animation: fall linear, rotate 8s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    0% {
+        top: -50px; /* Начало за экраном */
+        opacity: 0.5;
+    }
+    100% {
+        top: 100vh; /* Падает за пределы экрана */
+        opacity: 0;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
