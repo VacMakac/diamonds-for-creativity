@@ -120,6 +120,13 @@ body::before {
     display: inline-block;
 }
 
+.author {
+    color: #8b8b8b;
+    font-size: 100%;
+    margin-block-start: 0em;
+    margin-block-end: -1em;
+}
+
 .modal {
     display: none;
     position: fixed;

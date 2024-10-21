@@ -25,6 +25,7 @@ function fetchData() {
                     const link = row[0] || '#';
                     const preview = row[1] || 'default.jpg';
                     const title = row[2] || 'No Title';
+                    const author = row[3] || 'No Title';
                     const tag = row[4] || '';
                     const overallRating = parseFloat(row[5]) || 0;
                     const vacRating = parseFloat(row[6]) || 0;
@@ -41,6 +42,7 @@ function fetchData() {
                     
                     tileElement.innerHTML = `
                     <img src="${preview}" alt="${title}">
+                    <h4 class="author">${author}</h4>
                     <h3>${title}</h3>
                     ${tag ? `<h3 class="tag">${tag}</h3>` : ''}
                     <div class="overall-rating-text">${overallRating}<span class="rating-max">/90</span></div>
