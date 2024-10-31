@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreReview</title>
+    <link rel="icon" href="background-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/review/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sliders-group">
+            <div class="sliders-grid">
+                <div class="slider-container">
+                    <label for="slider1">Рифмы / Образы</label>
+                    <span id="slider1Value">5</span>
+                    <input type="range" min="1" max="10" value="5" class="slider" id="slider1">
+                </div>
+                <div class="slider-container">
+                    <label for="slider2">Структура / Ритмика</label>
+                    <span id="slider2Value">5</span>
+                    <input type="range" min="1" max="10" value="5" class="slider" id="slider2">
+                </div>
+                <div class="slider-container">
+                    <label for="slider3">Реализация стиля</label>
+                    <span id="slider3Value">5</span>
+                    <input type="range" min="1" max="10" value="5" class="slider" id="slider3">
+                </div>
+                <div class="slider-container">
+                    <label for="slider4">Индивидуальность / Харизма</label>
+                    <span id="slider4Value">5</span>
+                    <input type="range" min="1" max="10" value="5" class="slider" id="slider4">
+                </div>
+            </div>
+        </div>
+
+        <div class="sliders-horizontal-group">
+            <div class="slider-container-horizontal">
+                <label for="slider5">Атмосфера / Вайб</label>
+                <span id="slider5Value">1</span>
+                <input type="range" min="1" max="5" value="1" class="slider" id="slider5">
+            </div>
+            <div class="slider-container-horizontal">
+                <label for="slider6">Трендовость / Актуальность жанра</label>
+                <span id="slider6Value">1</span>
+                <input type="range" min="1" max="5" value="1" class="slider" id="slider6">
+            </div>
+        </div>
+
+        <div class="score">
+            <span id="totalScore">25</span><span id="maxScore">/90</span>
+        </div>
+
+        <button id="saveButton" class="save-btn">Оценить</button>
+    </div>
+    <script src="/review/scriptM.js"></script>
+</body>
+</html>
