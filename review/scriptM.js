@@ -33,7 +33,7 @@ function resetSliders() {
     sliders.forEach(slider => {
         slider.dispatchEvent(new Event('input')); // Обновляем отображение значений
     });
-    totalScoreElement.textContent = 25; // Устанавливаем значение по умолчанию
+    totalScoreElement.textContent = 23; // Устанавливаем значение по умолчанию
 }
 
 // Сохранение оценки
