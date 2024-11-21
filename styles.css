@@ -67,6 +67,9 @@ body::before {
         width: 25%;
         height: 25%;
     }
+    .content{
+        scale: 80%;
+    }
 }
 
 .content {
