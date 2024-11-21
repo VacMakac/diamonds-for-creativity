@@ -124,6 +124,11 @@ p {
     background-color: #d32f2f;
 }
 
+.special-btn {
+    background-color: #4949ff;
+    width: 5px;
+}
+
 footer {
     position: absolute;
     bottom: 1rem;
@@ -140,8 +145,6 @@ footer a {
 footer a:hover {
     color: white;
 }
-
-
 
 #diamond-container {
     position: absolute;
