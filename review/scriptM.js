@@ -14,10 +14,9 @@ function updateScore() {
     score += parseInt(document.getElementById('slider3').value);
     score += parseInt(document.getElementById('slider4').value);
 
-    let multiplier1 = parseInt(document.getElementById('slider5').value) * 0.15;
-    let multiplier2 = parseInt(document.getElementById('slider6').value) * 0.10;
+    let multiplier1 = parseInt(document.getElementById('slider5').value) * 0.13;
 
-    score *= (1 + multiplier1 + multiplier2);
+    score *= (1 + multiplier1);
     score = Math.min(Math.round(score), 90);
 
     totalScoreElement.textContent = score;
@@ -27,7 +26,6 @@ function updateScore() {
     document.getElementById('slider3Value').textContent = document.getElementById('slider3').value;
     document.getElementById('slider4Value').textContent = document.getElementById('slider4').value;
     document.getElementById('slider5Value').textContent = document.getElementById('slider5').value;
-    document.getElementById('slider6Value').textContent = document.getElementById('slider6').value;
 }
 
 // Сброс значений слайдеров и общей оценки
