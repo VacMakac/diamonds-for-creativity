@@ -121,15 +121,19 @@ p {
 
 .core-btn {
     background-color: #333;
+    box-shadow: 0px 0px 16px 0px #33350;
 }
 
 .shield-btn {
-    background-color: #d32f2f;
+    background-color: #941919;
+    box-shadow: 0px 0px 16px 0px #94191950;
 }
 
 .special-btn {
     background-color: #4949ff;
-    width: 5px;
+    width: 0px;
+    border-radius: 500px;
+    box-shadow: 0px 0px 16px 0px #4949ff50;
 }
 
 footer {
